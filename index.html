@@ -11,25 +11,25 @@
       width: 100%; height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      transition: background-image 1s ease, filter 1s ease, color 1s ease;
+      transition: background 1s ease, color 1s ease;
     }
 
-    /* ===== حالت تاریک: تصویر کهکشان تیره و مات ===== */
+    /* ===== Dark Mode: تصویر کهکشان + overlay سیاه ===== */
     body {
       color: #fff;
       background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
         url('https://source.unsplash.com/1920x1080/?galaxy,space,dark')
-        center/cover no-repeat fixed;
-      filter: brightness(0.6);
+          center/cover fixed no-repeat;
     }
 
-    /* ===== حالت روشن: تصویر کهکشان روشن ===== */
+    /* ===== Light Mode: تصویر کهکشان روشن + overlay سفید شفاف ===== */
     body.light-mode {
       color: #222;
       background:
+        linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
         url('https://source.unsplash.com/1920x1080/?galaxy,space,light')
-        center/cover no-repeat fixed;
-      filter: brightness(1);
+          center/cover fixed no-repeat;
     }
 
     /* ===== ستاره‌ها ===== */
@@ -39,14 +39,11 @@
       z-index: -1;
     }
 
-    /* -------- تغییر رنگ ذرات با توجه به تم -------- */
-    /* حالت پیش‌فرض (Dark): ذرات سفید */
+    /* ===== تغییر رنگ ذرات با توجه به تم ===== */
     #particles-js canvas {
       filter: invert(0);
       transition: filter .5s ease;
     }
-
-    /* حالت روشن: ذرات سیاه */
     body.light-mode #particles-js canvas {
       filter: invert(1);
     }
@@ -94,12 +91,13 @@
       width: 24px; height: 24px; margin-right: 12px;
     }
     .links a.telegram  { background: #229ED9; }
-    .links a.instagram { background:
-        radial-gradient(circle at 30% 110%,
-        #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%); }
+    .links a.instagram {
+      background: radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
+    }
     .links a.x         { background: #000; }
 
-    /* ===== Light Mode: لینک‌ها ===== */
+    /* ===== Light Mode: رنگ و سایه لینک‌ها ===== */
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       color: #222;
@@ -130,7 +128,6 @@
     </a>
   </div>
 
-  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
@@ -157,7 +154,6 @@
       retina_detect: true
     });
 
-    // سوئیچ تم
     const btn = document.querySelector('.toggle-mode');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
