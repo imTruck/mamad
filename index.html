@@ -48,22 +48,16 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* ===== پنل شیشه‌ای پشت لینک‌ها ===== */
+    /* ===== لینک‌های اجتماعی (بدون باکس شیشه‌ای) ===== */
     .links {
       position: relative; z-index: 1;
-      width: 280px; margin: 2rem auto 0;
-      padding: 1rem;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
       display: flex; flex-direction: column;
       align-items: center;
+      margin: 2rem auto 0;
     }
-
-    /* ===== دکمه‌های اجتماعی ===== */
     .links a {
       display: flex; align-items: center;
-      width: 100%; height: 48px;
+      width: 260px; height: 48px;
       margin: 8px 0; padding: 0 16px;
       border-radius: 999px;
       font-weight: bold; color: #fff;
@@ -79,7 +73,6 @@
       width: 24px; height: 24px;
       margin-right: 12px;
     }
-
     .links a.telegram {
       background: #229ED9;
     }
@@ -98,9 +91,6 @@
     }
     body.light-mode .toggle-mode {
       background: rgba(0,0,0,0.2); color: #fff;
-    }
-    body.light-mode .links {
-      background: rgba(255,255,255,0.6);
     }
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -124,7 +114,7 @@
 
   <h1>Connect with me ✨</h1>
   <div class="links">
-    <a class="telegram" href="https://t.me/bxiqm"    target="_blank">
+    <a class="telegram" href="https://t.me/bxiqm" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
       Telegram
     </a>
@@ -132,7 +122,7 @@
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
       Instagram
     </a>
-    <a class="x" href="https://twitter.com/dash_mamad"  target="_blank">
+    <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X">
       X
     </a>
