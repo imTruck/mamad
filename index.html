@@ -5,73 +5,80 @@
   <title>Galaxy with Particles & Theme Toggle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    /* ===== بک‌گراند گرادیانت سیال ===== */
+    /* ===== پایه ===== */
+    * { box-sizing: border-box; margin:0; padding:0; }
     html, body {
-      margin: 0; padding: 0;
-      width: 100%; height: 100%;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #0b0c10, #1f2833, #c5c6c7, #45a29e);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: #fff;
+      width:100%; height:100%;
+      overflow:hidden;
+      font-family:'Segoe UI',sans-serif;
+      transition: background 1s ease, color 1s ease;
     }
-    @keyframes gradientShift {
-      0%   { background-position:   0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position:   0% 50%; }
+
+    /* ===== بک‌گراند پیش‌فرض (Dark) ===== */
+    body {
+      color: #fff;
+      background-color: #000;
+      background-image: url('https://source.unsplash.com/1920x1080/?galaxy,space');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* ===== حالت روشن ===== */
+    body.light-mode {
+      color: #222;
+      background-color: #fdfdfd;
+      background-image: url('https://source.unsplash.com/1920x1080/?light,abstract');
     }
 
     /* ===== ستاره‌ها ===== */
     #particles-js {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top:0; left:0;
+      width:100%; height:100%;
       z-index: -1;
     }
 
-    /* ===== عناوین و دکمه تم ===== */
+    /* ===== هدر و دکمه تم ===== */
     h1 {
-      position: relative; z-index: 1;
-      text-align: center; margin-top: 20vh;
-      font-size: 2.5rem;
+      position: relative; z-index:1;
+      text-align:center; margin-top:20vh;
+      font-size:2.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
     .toggle-mode {
-      position: absolute; top: 1rem; right: 1rem; z-index: 2;
+      position:absolute; top:1rem; right:1rem; z-index:2;
+      padding:.5rem 1rem;
+      border:none; border-radius:999px;
       background: rgba(255,255,255,0.2);
-      border: none; padding: .5rem 1rem;
-      border-radius: 999px; cursor: pointer;
-      font-weight: bold; color: #fff;
-      transition: background .2s;
+      color:#fff; font-weight:bold;
+      cursor:pointer; transition: background .3s;
     }
     .toggle-mode:hover {
       background: rgba(255,255,255,0.3);
     }
 
-    /* ===== لینک‌های اجتماعی (بدون باکس شیشه‌ای) ===== */
+    /* ===== لینک‌های اجتماعی بدون باکس ===== */
     .links {
-      position: relative; z-index: 1;
+      position: relative; z-index:1;
       display: flex; flex-direction: column;
-      align-items: center;
-      margin: 2rem auto 0;
+      align-items: center; margin:2rem auto 0;
     }
     .links a {
       display: flex; align-items: center;
-      width: 260px; height: 48px;
-      margin: 8px 0; padding: 0 16px;
-      border-radius: 999px;
-      font-weight: bold; color: #fff;
-      text-decoration: none;
+      width:260px; height:48px;
+      margin:8px 0; padding:0 16px;
+      border-radius:999px;
+      font-weight:bold; color:#fff;
+      text-decoration:none;
       transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
     .links a:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
     }
     .links img {
-      width: 24px; height: 24px;
-      margin-right: 12px;
+      width:24px; height:24px; margin-right:12px;
     }
     .links a.telegram {
       background: #229ED9;
@@ -81,29 +88,22 @@
         #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
     }
     .links a.x {
-      background: linear-gradient(135deg, #141414, #454545);
+      background: #000; /* مشکی خالص */
     }
 
-    /* ===== حالت روشن ===== */
-    body.light-mode {
-      background: #f0f0f0; color: #222;
-      animation: none;
-    }
-    body.light-mode .toggle-mode {
-      background: rgba(0,0,0,0.2); color: #fff;
-    }
+    /* ===== حالت روشن: سایه ملایم‌تر ===== */
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       color: #222;
     }
     body.light-mode .links a.telegram {
-      background: #a6dcef; color: #024a66;
+      background: #a6dcef; color:#024a66;
     }
     body.light-mode .links a.instagram {
-      background: #f8e7d9; color: #3b1f0d;
+      background: #f8e7d9; color:#3b1f0d;
     }
     body.light-mode .links a.x {
-      background: #333; color: #eee;
+      background: #333; color:#eee;
     }
   </style>
 </head>
@@ -115,33 +115,28 @@
   <h1>Connect with me ✨</h1>
   <div class="links">
     <a class="telegram" href="https://t.me/bxiqm" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-      Telegram
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"> Telegram
     </a>
     <a class="instagram" href="https://instagram.com/mamad_mwri" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      Instagram
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> Instagram
     </a>
     <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X">
-      X
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X"> X
     </a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    // تنظیمات اولیه particles.js
     particlesJS("particles-js", {
       particles: {
-        number:    { value: 80, density: { enable: true, value_area: 800 } },
-        color:     { value: "#ffffff" },
-        shape:     { type: "circle" },
-        opacity:   { value: 0.5 },
-        size:      { value: 3 },
-        line_linked: {
-          enable: true, distance: 120,
-          color: "#ffffff", opacity: 0.3, width: 1
-        },
-        move:      { enable: true, speed: 1.2, out_mode: "bounce" }
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.3, width: 1 },
+        move: { enable: true, speed: 1.2, out_mode: "bounce" }
       },
       interactivity: {
         detect_on: "canvas",
@@ -149,14 +144,12 @@
           onhover: { enable: true, mode: "repulse" },
           onclick: { enable: true, mode: "push" }
         },
-        modes: {
-          repulse: { distance: 100 },
-          push:   { particles_nb: 4 }
-        }
+        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
       },
       retina_detect: true
     });
 
+    // سوئیچ تم
     const btn = document.querySelector('.toggle-mode');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
