@@ -52,21 +52,28 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* ===== دکمه‌های اجتماعی ===== */
+    /* ===== پنل پشت لینک‌ها (شیشه‌ای ملایم) ===== */
     .links {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 2rem;
+      margin: 2rem auto 0;
+      width: 280px;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
     }
+
+    /* ===== دکمه‌های اجتماعی ===== */
     .links a {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 260px;      /* عرض ثابت */
-      height: 48px;      /* ارتفاع ثابت */
+      width: 100%;
+      height: 48px;
       margin: 8px 0;
       padding: 0 16px;
       border-radius: 999px;
@@ -85,6 +92,8 @@
       height: 24px;
       margin-right: 12px;
     }
+
+    /* رنگ برند برای هر لینک */
     .links a.telegram {
       background: #229ED9;
     }
@@ -93,7 +102,7 @@
         #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
     }
     .links a.twitter {
-      background: #1DA1F2;
+      background: #000; /* سیاه خالص */
     }
 
     /* ===== حالت روشن (Light Mode) ===== */
@@ -105,8 +114,12 @@
       background: rgba(0,0,0,0.2);
       color: #fff;
     }
+    body.light-mode .links {
+      background: rgba(255, 255, 255, 0.6);
+    }
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      color: #222;
     }
     body.light-mode .links a.telegram {
       background: #a6dcef;
@@ -117,8 +130,8 @@
       color: #3b1f0d;
     }
     body.light-mode .links a.twitter {
-      background: #c5e4fa;
-      color: #0a2f4d;
+      background: #333; /* خاکستری تیره */
+      color: #eee;
     }
   </style>
 </head>
@@ -142,8 +155,8 @@
       Instagram
     </a>
     <a class="twitter" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="Twitter">
-      Twitter
+      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="X">
+      X
     </a>
   </div>
 
