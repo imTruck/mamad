@@ -6,64 +6,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    /* پایه */
+    /* ===== پایه ===== */
     html, body {
-      margin: 0; padding: 0; width: 100%; height: 100%;
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background: #000; /* حالت تاریک پیش‌فرض */
+      background: #000;       /* حالت تاریک پیش‌فرض */
       color: #fff;
     }
 
-    /* کانتینر ذرات */
+    /* ===== ذرات ===== */
     #particles-js {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: -1; /* پشت بقیه */
+      z-index: -1;            /* پشت همه */
     }
 
-    /* متن و لینک‌ها */
+    /* ===== متن اصلی ===== */
     h1 {
-      position: relative; z-index: 1;
-      text-align: center; margin-top: 20vh;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 20vh;
       font-size: 2.5rem;
     }
+
+    /* ===== دکمه سوییچ تم ===== */
+    .toggle-mode {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      z-index: 2;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: .5rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      transition: background .2s;
+    }
+    .toggle-mode:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ===== دکمه‌های اجتماعی ===== */
     .links {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column; align-items: center;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       margin-top: 2rem;
     }
     .links a {
-      display: flex; align-items: center;
-      text-decoration: none; color: inherit;
-      background: rgba(255,255,255,0.1);
-      padding: 0.5rem 1rem; border-radius: 999px;
-      margin: 0.5rem 0; transition: transform .2s;
-    }
-    .links a:hover { transform: scale(1.05); }
-    .links img { width: 24px; height: 24px; margin-right: .5rem; }
-
-    /* دکمه‌ی سوییچ تم */
-    .toggle-mode {
-      position: absolute; top: 1rem; right: 1rem;
-      z-index: 2;
-      background: rgba(255,255,255,0.2);
-      border: none; padding: .5rem 1rem;
-      border-radius: 999px; cursor: pointer;
-      font-size: 1rem; font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 260px;      /* عرض ثابت */
+      height: 48px;      /* ارتفاع ثابت */
+      margin: 8px 0;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-weight: bold;
       color: #fff;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .links a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .links img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+    }
+    .links a.telegram {
+      background: #229ED9;
+    }
+    .links a.instagram {
+      background: radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
+    }
+    .links a.twitter {
+      background: #1DA1F2;
     }
 
-    /* حالت روشن */
+    /* ===== حالت روشن (Light Mode) ===== */
     body.light-mode {
-      background: #f0f0f0; color: #222;
-    }
-    body.light-mode .links a {
-      background: rgba(0,0,0,0.05); color: #222;
+      background: #f0f0f0;
+      color: #222;
     }
     body.light-mode .toggle-mode {
-      background: rgba(0,0,0,0.2); color: #fff;
+      background: rgba(0,0,0,0.2);
+      color: #fff;
+    }
+    body.light-mode .links a {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    body.light-mode .links a.telegram {
+      background: #a6dcef;
+      color: #024a66;
+    }
+    body.light-mode .links a.instagram {
+      background: #f8e7d9;
+      color: #3b1f0d;
+    }
+    body.light-mode .links a.twitter {
+      background: #c5e4fa;
+      color: #0a2f4d;
     }
   </style>
 </head>
@@ -78,17 +133,17 @@
   <!-- محتوا -->
   <h1>Connect with me ✨</h1>
   <div class="links">
-    <a href="https://t.me/bxiqm" target="_blank">
+    <a class="telegram" href="https://t.me/bxiqm" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
       Telegram
     </a>
-    <a href="https://instagram.com/mamad_mwri" target="_blank">
+    <a class="instagram" href="https://instagram.com/mamad_mwri" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
       Instagram
     </a>
-    <a href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="X">
-      X
+    <a class="twitter" href="https://twitter.com/dash_mamad" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="Twitter">
+      Twitter
     </a>
   </div>
 
