@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     /* ===== پایه ===== */
-    * { box-sizing: border-box; margin:0; padding:0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
     html, body {
       width:100%; height:100%;
       overflow:hidden;
@@ -14,96 +14,98 @@
       transition: background 1s ease, color 1s ease;
     }
 
-    /* ===== بک‌گراند پیش‌فرض (Dark) ===== */
+    /* ===== Dark Mode (Galaxy) ===== */
     body {
-      color: #fff;
-      background-color: #000;
-      background-image: url('https://source.unsplash.com/1920x1080/?galaxy,space');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      color:#fff;
+      background: url('https://source.unsplash.com/1920x1080/?galaxy,space') center/cover fixed no-repeat;
     }
 
-    /* ===== حالت روشن ===== */
+    /* ===== Light Mode (Animated Pastel Gradient) ===== */
     body.light-mode {
-      color: #222;
-      background-color: #fdfdfd;
-      background-image: url('https://source.unsplash.com/1920x1080/?light,abstract');
+      color:#222;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #f6d365, #f8e1a1);
+      background-size: 400% 400%;
+      animation: lightGradient 12s ease infinite;
+    }
+    @keyframes lightGradient {
+      0%   { background-position:   0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position:   0% 50%; }
     }
 
     /* ===== ستاره‌ها ===== */
     #particles-js {
-      position: fixed;
-      top:0; left:0;
+      position:fixed; top:0; left:0;
       width:100%; height:100%;
-      z-index: -1;
+      z-index:-1;
     }
 
     /* ===== هدر و دکمه تم ===== */
     h1 {
-      position: relative; z-index:1;
+      position:relative; z-index:1;
       text-align:center; margin-top:20vh;
-      font-size:2.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      font-size:2.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
     .toggle-mode {
       position:absolute; top:1rem; right:1rem; z-index:2;
       padding:.5rem 1rem;
       border:none; border-radius:999px;
-      background: rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.2);
       color:#fff; font-weight:bold;
-      cursor:pointer; transition: background .3s;
+      cursor:pointer; transition:background .3s;
     }
     .toggle-mode:hover {
-      background: rgba(255,255,255,0.3);
+      background:rgba(255,255,255,0.3);
     }
 
-    /* ===== لینک‌های اجتماعی بدون باکس ===== */
+    /* ===== لینک‌های اجتماعی ===== */
     .links {
-      position: relative; z-index:1;
-      display: flex; flex-direction: column;
-      align-items: center; margin:2rem auto 0;
+      position:relative; z-index:1;
+      display:flex; flex-direction:column;
+      align-items:center; margin:2rem auto 0;
     }
     .links a {
-      display: flex; align-items: center;
+      display:flex; align-items:center;
       width:260px; height:48px;
       margin:8px 0; padding:0 16px;
       border-radius:999px;
       font-weight:bold; color:#fff;
       text-decoration:none;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition:transform .2s, box-shadow .2s;
+      box-shadow:0 4px 8px rgba(0,0,0,0.3);
     }
     .links a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      transform:scale(1.05);
+      box-shadow:0 6px 12px rgba(0,0,0,0.4);
     }
     .links img {
       width:24px; height:24px; margin-right:12px;
     }
     .links a.telegram {
-      background: #229ED9;
+      background:#229ED9;
     }
     .links a.instagram {
-      background: radial-gradient(circle at 30% 110%,
+      background:radial-gradient(circle at 30% 110%,
         #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
     }
     .links a.x {
-      background: #000; /* مشکی خالص */
+      background:#000;
     }
 
-    /* ===== حالت روشن: سایه ملایم‌تر ===== */
+    /* ===== Light Mode Shadows & Colors ===== */
     body.light-mode .links a {
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      color: #222;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+      color:#222;
     }
     body.light-mode .links a.telegram {
-      background: #a6dcef; color:#024a66;
+      background:#a6dcef; color:#024a66;
     }
     body.light-mode .links a.instagram {
-      background: #f8e7d9; color:#3b1f0d;
+      background:#f8e7d9; color:#3b1f0d;
     }
     body.light-mode .links a.x {
-      background: #333; color:#eee;
+      background:#333; color:#eee;
     }
   </style>
 </head>
@@ -127,29 +129,27 @@
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // تنظیمات اولیه particles.js
     particlesJS("particles-js", {
       particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.3, width: 1 },
-        move: { enable: true, speed: 1.2, out_mode: "bounce" }
+        number: { value:80, density:{ enable:true, value_area:800 }},
+        color: { value:"#fff" },
+        shape:{ type:"circle" },
+        opacity:{ value:0.5 },
+        size:{ value:3 },
+        line_linked:{ enable:true, distance:120, color:"#fff", opacity:0.3, width:1 },
+        move:{ enable:true, speed:1.2, out_mode:"bounce" }
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
+      interactivity:{
+        detect_on:"canvas",
+        events:{
+          onhover:{ enable:true, mode:"repulse" },
+          onclick:{ enable:true, mode:"push" }
         },
-        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+        modes:{ repulse:{ distance:100 }, push:{ particles_nb:4 }}
       },
-      retina_detect: true
+      retina_detect:true
     });
 
-    // سوئیچ تم
     const btn = document.querySelector('.toggle-mode');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
