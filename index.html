@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>محمد | لینک بیو</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(145deg, #111, #1f1f1f);
+      overflow: hidden;
+      font-family: sans-serif;
+      color: #fff;
+      text-align: center;
+      padding-top: 100px;
+      cursor: none;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+
+    .link {
+      display: block;
+      margin: 15px auto;
+      width: 200px;
+      padding: 12px;
+      border-radius: 30px;
+      background: #00ffc3;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .link:hover {
+      background: #00dab0;
+    }
+
+    .trail {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, rgba(0,255,200,0.3), transparent);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fadeOut 1s forwards;
+      z-index: 1000;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 2rem; }
+      .link { width: 80%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>سلام! من محمدم</h1>
+  <p>لینک‌هام رو اینجا ببین:</p>
+
+  <a class="link" href="https://t.me/bxiqm" target="_blank">تلگرام</a>
+  <a class="link" href="https://instagram.com/mamad_mwri" target="_blank">اینستاگرام</a>
+  <a class="link" href="https://twitter.com/dash_mamad" target="_blank">توییتر</a>
+
+  <script>
+    document.addEventListener("mousemove", (e) => {
+      const glow = document.createElement("div");
+      glow.className = "trail";
+      glow.style.left = (e.pageX - 15) + "px";
+      glow.style.top = (e.pageY - 15) + "px";
+      document.body.appendChild(glow);
+      setTimeout(() => glow.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
