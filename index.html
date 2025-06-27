@@ -37,14 +37,18 @@
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
-      pointer-events: auto; /* فعال‌سازی تعامل موس */
+      pointer-events: none; /* خودش نباید بلاک کنه */
+    }
+    /* اجازه می‌دهد canvas ذرات موس را دریافت کند */
+    #particles-js canvas {
+      pointer-events: auto;
+      transition: filter .5s ease;
     }
 
     /* ===== رنگ ذرات ===== */
     /* Dark mode: ذرات سفید بدون تغییر */
     #particles-js canvas {
       filter: invert(0) brightness(3);
-      transition: filter .5s ease;
     }
     /* Light mode: ذرات سیاه */
     body.light-mode #particles-js canvas {
@@ -113,6 +117,7 @@
   </style>
 </head>
 <body>
+
   <div id="particles-js"></div>
   <button class="toggle-mode">☀️</button>
 
@@ -127,7 +132,7 @@
       Instagram
     </a>
     <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn.icon-icons.com/icons2/3261/PNG/512/x_circle_icon_206761.png" alt="X">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X">
       X
     </a>
   </div>
@@ -145,7 +150,7 @@
         move:        { enable: true, speed: 0.6, out_mode: "bounce" }
       },
       interactivity: {
-        detect_on: "canvas",
+        detect_on: "window",      /* از window استفاده می‌کنیم */
         events: {
           onhover: { enable: true, mode: "repulse" },
           onclick: { enable: true, mode: "push" }
@@ -158,6 +163,7 @@
       retina_detect: true
     });
 
+    // سوییچ تم
     const btn = document.querySelector('.toggle-mode');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
