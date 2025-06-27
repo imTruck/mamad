@@ -18,7 +18,7 @@
     body {
       color: #fff;
       background:
-        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+        linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
         url('https://source.unsplash.com/1920x1080/?galaxy,space,dark')
           center/cover fixed no-repeat;
     }
@@ -39,13 +39,15 @@
       z-index: -1;
     }
 
-    /* ===== تغییر رنگ ذرات با توجه به تم ===== */
+    /* ===== رنگ و کنتراست ذرات ===== */
+    /* Dark mode: ذرات بسیار سفید */
     #particles-js canvas {
-      filter: invert(0);
+      filter: invert(0) brightness(2);
       transition: filter .5s ease;
     }
+    /* Light mode: ذرات سیاه */
     body.light-mode #particles-js canvas {
-      filter: invert(1);
+      filter: invert(1) brightness(1);
     }
 
     /* ===== هدر و دکمه سوییچ تم ===== */
@@ -125,7 +127,7 @@
       Instagram
     </a>
     <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733646.png" alt="X">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X">
       X
     </a>
   </div>
