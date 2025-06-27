@@ -17,8 +17,8 @@
     /* ===== حالت تاریک: تصویر کهکشان تیره و مات ===== */
     body {
       color: #fff;
-      background: 
-        url('https://source.unsplash.com/1920x1080/?galaxy,space,dark') 
+      background:
+        url('https://source.unsplash.com/1920x1080/?galaxy,space,dark')
         center/cover no-repeat fixed;
       filter: brightness(0.6);
     }
@@ -26,8 +26,8 @@
     /* ===== حالت روشن: تصویر کهکشان روشن ===== */
     body.light-mode {
       color: #222;
-      background: 
-        url('https://source.unsplash.com/1920x1080/?galaxy,space,light') 
+      background:
+        url('https://source.unsplash.com/1920x1080/?galaxy,space,light')
         center/cover no-repeat fixed;
       filter: brightness(1);
     }
@@ -37,6 +37,18 @@
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
+    }
+
+    /* -------- تغییر رنگ ذرات با توجه به تم -------- */
+    /* حالت پیش‌فرض (Dark): ذرات سفید */
+    #particles-js canvas {
+      filter: invert(0);
+      transition: filter .5s ease;
+    }
+
+    /* حالت روشن: ذرات سیاه */
+    body.light-mode #particles-js canvas {
+      filter: invert(1);
     }
 
     /* ===== هدر و دکمه سوییچ تم ===== */
@@ -81,12 +93,11 @@
     .links img {
       width: 24px; height: 24px; margin-right: 12px;
     }
-    .links a.telegram    { background: #229ED9; }
-    .links a.instagram   {
-      background: radial-gradient(circle at 30% 110%,
-        #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%);
-    }
-    .links a.x           { background: #000; }
+    .links a.telegram  { background: #229ED9; }
+    .links a.instagram { background:
+        radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%); }
+    .links a.x         { background: #000; }
 
     /* ===== Light Mode: لینک‌ها ===== */
     body.light-mode .links a {
@@ -130,7 +141,7 @@
         opacity:     { value: 0.5 },
         size:        { value: 3 },
         line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.3, width: 1 },
-        move:        { enable: true, speed: 0.6, out_mode: "bounce" }  /* سرعت کمتر */
+        move:        { enable: true, speed: 0.6, out_mode: "bounce" }
       },
       interactivity: {
         detect_on: "canvas",
@@ -146,7 +157,7 @@
       retina_detect: true
     });
 
-    // переключатель темы
+    // سوئیچ تم
     const btn = document.querySelector('.toggle-mode');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
