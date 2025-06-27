@@ -3,112 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Social Links</title>
+  <title>My Links</title>
   <style>
+    /* 🌌 Background Animation */
     body {
       margin: 0;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-      background-size: 400% 400%;
-      animation: moveBG 10s ease infinite;
+      background: linear-gradient(115deg, #10141a, #0e1b26, #172a39);
+      background-size: 600% 600%;
+      animation: gradientFlow 16s ease infinite;
       font-family: sans-serif;
       color: #fff;
       text-align: center;
       padding-top: 100px;
       overflow: hidden;
-      cursor: none;
+      position: relative;
     }
 
-    @keyframes moveBG {
+    @keyframes gradientFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
     p {
-      opacity: 0.8;
-      margin-bottom: 30px;
+      opacity: 0.85;
+      margin-bottom: 35px;
+      font-size: 1.1rem;
     }
 
     .link {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px;
-      margin: 20px auto;
-      width: 240px;
-      padding: 12px 18px;
-      border-radius: 40px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
+      margin: 16px auto;
+      width: 250px;
+      padding: 12px 20px;
+      border-radius: 50px;
       text-decoration: none;
-      color: #fff;
       font-weight: bold;
-      transition: transform 0.3s ease, background 0.3s ease;
+      font-size: 1rem;
+      transition: transform 0.25s ease;
+      color: #fff;
     }
 
     .link:hover {
-      transform: scale(1.05);
-      background: rgba(0, 255, 200, 0.2);
+      transform: scale(1.06);
     }
 
     .link img {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
+      margin-right: 12px;
     }
 
-    .trail {
+    /* Platform-specific colors */
+    .telegram { background: #0088cc; }
+    .instagram {
+      background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    }
+    .x {
+      background: #000;
+    }
+
+    /* 🔮 Custom fancy cursor glow effect */
+    .cursor-glow {
       position: fixed;
-      width: 30px;
-      height: 30px;
-      background: rgba(0,255,200,0.15);
-      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(0, 255, 200, 0.3), transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
-      z-index: 1000;
-      animation: gooFade 1.2s forwards ease;
-      mix-blend-mode: screen;
-      transform: translate(-50%, -50%);
+      mix-blend-mode: lighten;
+      transform: translate(-50%, -50%) scale(1.2);
+      transition: transform 0.1s ease;
+      filter: blur(18px);
+      z-index: 9999;
     }
 
-    @keyframes gooFade {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(2);
-      }
-    }
   </style>
 </head>
 <body>
 
-  <p>Check out my socials 👇</p>
+  <p>Connect with me 🚀</p>
 
-  <a class="link" href="https://t.me/bxiqm" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" />
+  <a class="link telegram" href="https://t.me/bxiqm" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
     Telegram
   </a>
 
-  <a class="link" href="https://instagram.com/mamad_mwri" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+  <a class="link instagram" href="https://instagram.com/mamad_mwri" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
     Instagram
   </a>
 
-  <a class="link" href="https://twitter.com/dash_mamad" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
-    Twitter
+  <a class="link x" href="https://twitter.com/dash_mamad" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968846.png" alt="X">
+    X
   </a>
 
+  <div id="glow" class="cursor-glow"></div>
+
   <script>
-    document.addEventListener("mousemove", (e) => {
-      const blob = document.createElement("div");
-      blob.className = "trail";
-      blob.style.left = `${e.pageX}px`;
-      blob.style.top = `${e.pageY}px`;
-      document.body.appendChild(blob);
-      setTimeout(() => blob.remove(), 1200);
+    const glow = document.getElementById("glow");
+    document.addEventListener("mousemove", e => {
+      glow.style.left = e.pageX + "px";
+      glow.style.top = e.pageY + "px";
     });
   </script>
+
 </body>
 </html>
