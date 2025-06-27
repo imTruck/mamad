@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     /* ===== پایه ===== */
-    * { box-sizing: border-box; margin: 0; padding: 0 }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%; height: 100%;
       overflow: hidden;
@@ -14,7 +14,7 @@
       transition: background 1s ease, color 1s ease;
     }
 
-    /* ===== Dark Mode: کهکشان با overlay سیاه‌تر ===== */
+    /* ===== Dark Mode: کهکشان + overlay سیاه‌تر ===== */
     body {
       color: #fff;
       background:
@@ -23,7 +23,7 @@
           center/cover fixed no-repeat;
     }
 
-    /* ===== Light Mode: کهکشان روشن با overlay سفید شفاف ===== */
+    /* ===== Light Mode: کهکشان روشن + overlay سفید شفاف ===== */
     body.light-mode {
       color: #222;
       background:
@@ -37,7 +37,7 @@
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
-      pointer-events: auto; /* فعالسازی تعامل موس */
+      pointer-events: auto; /* فعال‌سازی تعامل موس */
     }
 
     /* ===== رنگ ذرات ===== */
@@ -51,7 +51,7 @@
       filter: invert(1);
     }
 
-    /* ===== هدر و دکمه سوییچ ===== */
+    /* ===== هدر و دکمهٔ سوییچ ===== */
     h1 {
       position: relative; z-index: 1;
       text-align: center; margin-top: 20vh;
@@ -62,8 +62,7 @@
       position: absolute; top: 1rem; right: 1rem; z-index: 2;
       padding: .5rem 1rem; border: none; border-radius: 999px;
       background: rgba(255,255,255,0.2); color: #fff;
-      font-weight: bold; cursor: pointer;
-      transition: background .3s;
+      font-weight: bold; cursor: pointer; transition: background .3s;
     }
     .toggle-mode:hover {
       background: rgba(255,255,255,0.35);
@@ -72,8 +71,8 @@
     /* ===== لینک‌های اجتماعی ===== */
     .links {
       position: relative; z-index: 1;
-      display: flex; flex-direction: column;
-      align-items: center; margin: 2rem auto 0;
+      display: flex; flex-direction: column; align-items: center;
+      margin: 2rem auto 0;
     }
     .links a {
       display: flex; align-items: center;
@@ -101,18 +100,19 @@
       background: #333; /* خاکستری تیره برای X */
     }
 
-    /* ===== Light Mode: لینک‌ها ===== */
+    /* ===== Light Mode: رنگ و سایه لینک‌ها ===== */
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       color: #222;
     }
     body.light-mode .links a.telegram  { background: #a6dcef; color: #024a66; }
     body.light-mode .links a.instagram { background: #f8e7d9; color: #3b1f0d; }
-    body.light-mode .links a.x         { background: #ccc;   color: #333; }
+    body.light-mode .links a.x {
+      background: #ccc; color: #333; /* خاکستری روشن‌تر برای X */
+    }
   </style>
 </head>
 <body>
-
   <div id="particles-js"></div>
   <button class="toggle-mode">☀️</button>
 
@@ -127,7 +127,7 @@
       Instagram
     </a>
     <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/x_twitter_logo_icon_168554.png" alt="X">
+      <img src="https://cdn.icon-icons.com/icons2/3261/PNG/512/x_circle_icon_206761.png" alt="X">
       X
     </a>
   </div>
@@ -150,7 +150,10 @@
           onhover: { enable: true, mode: "repulse" },
           onclick: { enable: true, mode: "push" }
         },
-        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+        modes: {
+          repulse: { distance: 100 },
+          push:   { particles_nb: 4 }
+        }
       },
       retina_detect: true
     });
