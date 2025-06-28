@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>Galaxy with Particles & Theme Toggle</title>
+  <title>Galaxy with Particles, Theme & Audio Toggle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     /* ===== پایه ===== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,10 +12,8 @@
       width: 100%; height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      transition: background 1s ease, color 1s ease;
+      transition: background .8s ease, color .8s ease;
     }
-
-    /* ===== Dark Mode ===== */
     body {
       color: #fff;
       background:
@@ -22,8 +21,6 @@
         url('https://source.unsplash.com/1920x1080/?galaxy,space,dark')
           center/cover fixed no-repeat;
     }
-
-    /* ===== Light Mode ===== */
     body.light-mode {
       color: #222;
       background:
@@ -48,7 +45,7 @@
       filter: invert(1);
     }
 
-    /* ===== هدر و دکمه سوییچ ===== */
+    /* ===== عنوان و دکمه‌ها ===== */
     h1 {
       position: relative; z-index: 1;
       text-align: center; margin-top: 20vh;
@@ -56,20 +53,48 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
     .toggle-mode {
-      position: absolute; top: 1rem; right: 1rem; z-index: 2;
-      padding: .5rem 1rem; border: none; border-radius: 999px;
-      background: rgba(255,255,255,0.2); color: #fff;
-      font-weight: bold; cursor: pointer; transition: background .3s;
+      position: absolute; top: 1rem; right: 1rem;
+      z-index: 2;
+      padding: .5rem 1rem;
+      border: none; border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background .3s ease;
     }
     .toggle-mode:hover {
       background: rgba(255,255,255,0.35);
+    }
+
+    /* ===== دکمه کنترل صدا ===== */
+    .audio-toggle {
+      position: absolute; top: 3.5rem; right: 1rem;
+      z-index: 2;
+      padding: .5rem 1rem;
+      border: none; border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .3s ease;
+    }
+    .audio-toggle:hover {
+      background: rgba(255,255,255,0.35);
+    }
+    body.light-mode .audio-toggle {
+      background: rgba(0,0,0,0.1);
+      color: #222;
+    }
+    body.light-mode .audio-toggle:hover {
+      background: rgba(0,0,0,0.2);
     }
 
     /* ===== لینک‌های اجتماعی ===== */
     .links {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; align-items: center;
-      margin: 2rem auto 0;
+      margin-top: 2rem;
     }
     .links a {
       display: flex; align-items: center;
@@ -80,6 +105,7 @@
       text-decoration: none;
       transition: transform .2s, box-shadow .2s;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      opacity: 0; transform: translateY(20px);
     }
     .links a:hover {
       transform: scale(1.05);
@@ -88,53 +114,70 @@
     .links img {
       width: 24px; height: 24px; margin-right: 12px;
     }
-
-    /* رنگ پس‌زمینه هر لینک */
-    .links a.telegram  { background: #229ED9; }
-    .links a.instagram { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%); }
-    .links a.x         { background: #333; }
-    .links a.anonymous-chat {
-      background: #6e5494;
-      color: #fff;
-    }
-
-    /* حالت لایت */
+    .telegram  { background: #229ED9; }
+    .instagram { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 65%, #285AEB 90%); }
+    .x         { background: #333; }
+    .anon      { background: #6e5494; }
     body.light-mode .links a {
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       color: #222;
     }
-    body.light-mode .links a.telegram  { background: #a6dcef; color: #024a66; }
-    body.light-mode .links a.instagram { background: #f8e7d9; color: #3b1f0d; }
-    body.light-mode .links a.x         { background: #ccc;   color: #333; }
-    body.light-mode .links a.anonymous-chat {
-      background: #e5d5f0;
-      color: #382147;
+    body.light-mode .telegram  { background: #a6dcef; color: #024a66; }
+    body.light-mode .instagram { background: #f8e7d9; color: #3b1f0d; }
+    body.light-mode .x         { background: #ccc;   color: #333; }
+    body.light-mode .anon      { background: #e5d5f0; color: #382147; }
+
+    /* انیمیشن ورود لینک‌ها */
+    .fade-in {
+      animation: fadeIn .8s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Particles.js background -->
   <div id="particles-js"></div>
+
+  <!-- Theme toggle -->
   <button class="toggle-mode">☀️</button>
 
+  <!-- Audio toggle -->
+  <button class="audio-toggle">🔇</button>
+  <audio id="bg-audio" loop>
+    <!-- جایگزین کنید با URL فایل MP3 صدای کهکشان شما -->
+    <source src="space-ambience.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Heading -->
   <h1>Connect with me ✨</h1>
+
+  <!-- Social links -->
   <div class="links">
     <a class="telegram" href="https://t.me/bxiqm" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"> Telegram
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+      Telegram
     </a>
     <a class="instagram" href="https://instagram.com/mamad_mwri" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> Instagram
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      Instagram
     </a>
     <a class="x" href="https://twitter.com/dash_mamad" target="_blank">
-      <img src="twitter-custom.png" alt="Custom X"> X
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Custom X">
+      Custom X
     </a>
-    <a class="anonymous-chat" href="https://t.me/BoldChat_Bot?start=sec-ggjfcbicde" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3105/3105810.png" alt="Anonymous Chat"> Chat ناشناس
+    <a class="anon" href="https://t.me/BoldChat_Bot?start=sec-ggjfcbicde" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3105/3105810.png" alt="Anonymous Chat">
+      Anonymous Chat
     </a>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    // initialize particles
     particlesJS("particles-js", {
       particles: {
         number:      { value: 80, density: { enable: true, value_area: 800 } },
@@ -156,11 +199,41 @@
       retina_detect: true
     });
 
-    // سوییچ تم
-    const btn = document.querySelector('.toggle-mode');
-    btn.addEventListener('click', () => {
+    // Theme toggle logic
+    const themeBtn = document.querySelector('.toggle-mode');
+    themeBtn.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
-      btn.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+      themeBtn.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+    });
+
+    // Audio toggle logic
+    const audioBtn = document.querySelector('.audio-toggle');
+    const bgAudio  = document.getElementById('bg-audio');
+
+    // on load: read last state
+    if (localStorage.getItem('audioPlaying') === 'true') {
+      bgAudio.play();
+      audioBtn.textContent = '🔊';
+    } else {
+      bgAudio.pause();
+      audioBtn.textContent = '🔇';
+    }
+
+    audioBtn.addEventListener('click', () => {
+      if (bgAudio.paused) {
+        bgAudio.play();
+        audioBtn.textContent = '🔊';
+        localStorage.setItem('audioPlaying', 'true');
+      } else {
+        bgAudio.pause();
+        audioBtn.textContent = '🔇';
+        localStorage.setItem('audioPlaying', 'false');
+      }
+    });
+
+    // Animate links in
+    document.querySelectorAll('.links a').forEach((link, i) => {
+      setTimeout(() => link.classList.add('fade-in'), i * 200);
     });
   </script>
 </body>
